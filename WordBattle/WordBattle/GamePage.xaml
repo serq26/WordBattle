@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WordBattle.GamePage" BackgroundImage="wood_bg">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+            <Image BackgroundColor="Transparent" Source="up" WidthRequest="415" Aspect="Fill"/>
+            
+            <Label FontFamily="{StaticResource GameFont}" Margin="-400,0,0,10" Text="You :" WidthRequest="150" FontAttributes="Bold" FontSize="18" TextColor="White" HorizontalOptions="Start" VerticalOptions="Center"/>
+            <Label x:Name="playerScore" FontFamily="{StaticResource GameFont}" WidthRequest="50" Margin="-75,2,0,10" FontAttributes="Bold" FontSize="18" TextColor="White" VerticalOptions="Center"/>
+
+            <Label x:Name="AIScore" FontFamily="{StaticResource GameFont}" WidthRequest="50" Margin="200,3,0,10" FontAttributes="Bold" FontSize="18" TextColor="White" VerticalOptions="Center"/>
+            <Label FontFamily="{StaticResource GameFont}" WidthRequest="70" Margin="-15,0,0,10" Text=": Bot" FontAttributes="Bold" FontSize="18" TextColor="White" HorizontalOptions="End" VerticalOptions="Center"/>
+        </StackLayout>
+        <ListView x:Name="PlayerListview" BackgroundColor="Transparent" Grid.Row="1" Grid.Column="0" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Margin="10,0,0,0" Source="bubble_4"/>
+                            <Label FontFamily="{StaticResource GameFont}" Margin="-150,2,0,0" Text="{Binding Text}" WidthRequest="120"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <ListView BackgroundColor="Transparent" x:Name="AIListview" Grid.Row="1" Grid.Column="1" SelectionMode="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="bubble_4"/>
+                            <Label FontFamily="{StaticResource GameFont}" Margin="-150,2,0,0" Text="{Binding Text}" WidthRequest="120"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackLayout Grid.Row="2" Grid.ColumnSpan="2" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label x:Name="warning"  Text="Wrong Word!" TextColor="Yellow" IsVisible="False" FontFamily="{StaticResource GameFont}" />
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="2">
+            <Entry Margin="30,0,0,0" FontSize="20" x:Name="EntryText" PlaceholderColor="White" FontAttributes="Bold" TextColor="LightGray" WidthRequest="300" HorizontalOptions="Start"/>
+            <ImageButton Source="ok" HorizontalOptions="Center" VerticalOptions="Center" Clicked="Button_Clicked"/>           
+        </StackLayout>
+    </Grid>
+      
+</ContentPage>
